@@ -16,7 +16,7 @@ enum HttpMethod: String {
 }
 
 struct ApiRequest {
-    let address: String
+    let path: Endpoint
     var method: HttpMethod = .get
     var headers: [String: String] = [:]
     var body: Data? = nil

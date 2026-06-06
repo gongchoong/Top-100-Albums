@@ -13,7 +13,7 @@ protocol ApiServiceProtocol: Sendable {
 
 class ApiService: ApiServiceProtocol {
     func response(request: ApiRequest) async throws -> Data {
-        guard let url = URL(string: request.address) else {
+        guard let url = URL(string: request.path.rawValue) else {
             throw ApiError.invalidURL
         }
 
