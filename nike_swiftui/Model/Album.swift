@@ -28,4 +28,13 @@ struct Album: Codable, Identifiable, Sendable {
     let artworkUrl100: String
     let artistId: String?
     let releaseDate: String
+    let genres: [Genre]?
+    let url: String
+}
+
+struct Genre: Codable, Sendable, Identifiable {
+    var id: String { genreId }
+    let genreId: String
+    let name: String
+    let url: String
 }
