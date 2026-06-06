@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct nike_swiftuiApp: App {
+    @State private var viewModel = MainViewModel(
+        albumService: AlbumService(apiService: ApiService())
+    )
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+                .environment(viewModel)
         }
     }
 }
