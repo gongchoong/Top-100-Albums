@@ -7,8 +7,6 @@
 
 import Foundation
 
-enum Endpoint: Sendable {
-    static var mostPlayedAlbums: String {
-        "https://rss.applemarketingtools.com/api/v2/us/music/most-played/100/albums.json"
-    }
+public enum Endpoint: String, Sendable {
+    case mostPlayedAlbums = "https://rss.applemarketingtools.com/api/v2/us/music/most-played/100/albums.json"
 }
