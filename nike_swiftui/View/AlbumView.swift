@@ -15,9 +15,10 @@ struct AlbumView: View {
             AsyncImage(url: URL(string: album.artworkUrl100)) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
-                EmptyView()
+                Color.secondary.opacity(0.2)
             }
             .frame(width: 50, height: 50)
+            .clipShape(RoundedRectangle(cornerRadius: 4))
             .clipped()
             
             VStack(alignment: .leading) {

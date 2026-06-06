@@ -11,25 +11,29 @@ struct MainView: View {
     @Environment(MainViewModel.self) private var viewModel
 
     var body: some View {
-        Group {
-            switch viewModel.albums {
-            case .idle:
-                EmptyView()
-            case .loading:
-                ProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            case .finished(let albums):
-                List(albums) { album in
-                    AlbumView(album: album)
+        NavigationStack {
+            Group {
+                switch viewModel.albums {
+                case .idle:
+                    EmptyView()
+                case .loading:
+                    ProgressView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                case .finished(let albums):
+                    List(albums) { album in
+                        NavigationLink(destination: AlbumDetailView(album: album)) {
+                            AlbumView(album: album)
+                        }
+                    }
+                case .error(let error):
+                    Text(error.localizedDescription)
                 }
-            case .error(let error):
-                Text(error.localizedDescription)
             }
+            .navigationTitle("Top Albums")
         }
         .task {
             await viewModel.fetchAlbums()
         }
-        .padding()
     }
 }
 
