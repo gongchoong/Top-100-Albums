@@ -9,6 +9,7 @@ import SwiftUI
 
 /// Manages the state of the top albums list and exposes filtered results for the main view.
 @Observable
+@MainActor
 class MainViewModel {
     private let albumDataProvider: AlbumDataProviderProtocol
     var albums: LoadingState<[Album]> = .idle
@@ -22,8 +23,7 @@ class MainViewModel {
     func fetchAlbums() async {
         albums = .loading
         do {
-            let data = try await albumDataProvider.fetch()
-            let result = try JSONDecoder().decode(TopHundredAlbums.self, from: data).feed.albums
+            let result = try await albumDataProvider.fetch()
             albums = .finished(result)
         } catch {
             albums = .error(error)

@@ -2,10 +2,10 @@ import Foundation
 @testable import nike_swiftui
 
 actor MockApiService: ApiServiceProtocol {
-    var stub = Stub()
+    var stub = Stub(result: .success(Data()))
     private(set) var spy = Spy()
 
-    func configure(stub: Stub) {
+    func configure(stub: Stub<Data>) {
         self.stub = stub
     }
 
