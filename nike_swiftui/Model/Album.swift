@@ -38,3 +38,10 @@ struct Genre: Codable, Sendable, Identifiable {
     let name: String
     let url: String
 }
+
+extension Album {
+    var genreNames: String? {
+        guard let genres, !genres.isEmpty else { return nil }
+        return genres.map(\.name).joined(separator: " ")
+    }
+}

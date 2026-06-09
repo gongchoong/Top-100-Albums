@@ -1,5 +1,5 @@
 //
-//  AlbumService.swift
+//  AlbumDataProvider.swift
 //  nike_swiftui
 //
 //  Created by davidlee on 6/6/26.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol AlbumServiceProtocol: Sendable {
+protocol AlbumDataProviderProtocol: Sendable {
     func fetch() async throws -> Data
 }
 
-actor AlbumService: AlbumServiceProtocol {
+actor AlbumDataProvider: AlbumDataProviderProtocol {
     private let apiService: ApiServiceProtocol
     private var currentTask: Task<Data, Error>?
 

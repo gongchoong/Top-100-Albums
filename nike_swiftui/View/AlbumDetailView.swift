@@ -22,41 +22,42 @@ struct AlbumDetailView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 .shadow(radius: 8)
 
-                VStack(spacing: 8) {
-                    Text(album.name)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
+                VStack(spacing: 20) {
+                    VStack(spacing: 4) {
+                        Text(album.name)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.center)
 
-                    Text(album.artistName)
-                        .font(.title3)
-                        .foregroundStyle(.secondary)
-                    
-                    if let genres = album.genres {
-                        HStack {
-                            ForEach(genres) { genre in
-                                Text(genre.name)
-                                    .font(.subheadline)
-                                    .foregroundStyle(.tertiary)
-                            }
-                        }
+                        Text(album.artistName)
+                            .font(.title3)
+                            .foregroundStyle(.secondary)
                     }
+                    
+                    VStack {
+                        if let genreNames = album.genreNames {
+                            Text(genreNames)
+                                .font(.subheadline)
+                                .foregroundStyle(.tertiary)
+                                .multilineTextAlignment(.center)
+                        }
 
-                    Text(album.releaseDate)
-                        .font(.subheadline)
-                        .foregroundStyle(.tertiary)
+                        Text(album.releaseDate)
+                            .font(.subheadline)
+                            .foregroundStyle(.tertiary)
 
-                    if let url = URL(string: album.url) {
-                        Link(destination: url) {
-                            Text("View on Apple Music")
-                                .font(.headline)
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .foregroundStyle(.link)
+                        if let url = URL(string: album.url) {
+                            Link(destination: url) {
+                                Text("View on Apple Music")
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundStyle(.link)
+                            }
+                            .padding()
                         }
                     }
                 }
-                .padding(.horizontal)
+                .padding()
             }
             .padding()
         }

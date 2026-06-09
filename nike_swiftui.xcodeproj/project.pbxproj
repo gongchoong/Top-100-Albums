@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		54867D6D2FD4D11000741B27 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 543A30F62FD4863800287B48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 543A30FD2FD4863800287B48;
+			remoteInfo = nike_swiftui;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		543A30FE2FD4863800287B48 /* nike_swiftui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nike_swiftui.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54867D692FD4D11000741B27 /* nike_swiftuiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nike_swiftuiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = nike_swiftui;
 			sourceTree = "<group>";
 		};
+		54867D6A2FD4D11000741B27 /* nike_swiftuiTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = nike_swiftuiTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		543A30FB2FD4863800287B48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54867D662FD4D11000741B27 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				543A31002FD4863800287B48 /* nike_swiftui */,
+				54867D6A2FD4D11000741B27 /* nike_swiftuiTests */,
 				543A30FF2FD4863800287B48 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				543A30FE2FD4863800287B48 /* nike_swiftui.app */,
+				54867D692FD4D11000741B27 /* nike_swiftuiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = 543A30FE2FD4863800287B48 /* nike_swiftui.app */;
 			productType = "com.apple.product-type.application";
 		};
+		54867D682FD4D11000741B27 /* nike_swiftuiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54867D712FD4D11000741B27 /* Build configuration list for PBXNativeTarget "nike_swiftuiTests" */;
+			buildPhases = (
+				54867D652FD4D11000741B27 /* Sources */,
+				54867D662FD4D11000741B27 /* Frameworks */,
+				54867D672FD4D11000741B27 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				54867D6E2FD4D11000741B27 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				54867D6A2FD4D11000741B27 /* nike_swiftuiTests */,
+			);
+			name = nike_swiftuiTests;
+			packageProductDependencies = (
+			);
+			productName = nike_swiftuiTests;
+			productReference = 54867D692FD4D11000741B27 /* nike_swiftuiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					543A30FD2FD4863800287B48 = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					54867D682FD4D11000741B27 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 543A30FD2FD4863800287B48;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				543A30FD2FD4863800287B48 /* nike_swiftui */,
+				54867D682FD4D11000741B27 /* nike_swiftuiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		543A30FC2FD4863800287B48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54867D672FD4D11000741B27 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		54867D652FD4D11000741B27 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		54867D6E2FD4D11000741B27 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 543A30FD2FD4863800287B48 /* nike_swiftui */;
+			targetProxy = 54867D6D2FD4D11000741B27 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		543A31072FD4863A00287B48 /* Debug */ = {
@@ -310,6 +385,48 @@
 			};
 			name = Release;
 		};
+		54867D6F2FD4D11000741B27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6DKW9GEJU7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "david.lee.nike-swiftuiTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nike_swiftui.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nike_swiftui";
+			};
+			name = Debug;
+		};
+		54867D702FD4D11000741B27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6DKW9GEJU7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "david.lee.nike-swiftuiTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nike_swiftui.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nike_swiftui";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -327,6 +444,15 @@
 			buildConfigurations = (
 				543A310A2FD4863A00287B48 /* Debug */,
 				543A310B2FD4863A00287B48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		54867D712FD4D11000741B27 /* Build configuration list for PBXNativeTarget "nike_swiftuiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54867D6F2FD4D11000741B27 /* Debug */,
+				54867D702FD4D11000741B27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

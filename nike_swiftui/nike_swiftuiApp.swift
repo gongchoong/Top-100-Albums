@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct nike_swiftuiApp: App {
     @State private var viewModel = MainViewModel(
-        albumService: AlbumService(apiService: ApiService())
+        albumDataProvider: AlbumDataProvider(apiService: ApiService())
     )
 
     var body: some Scene {
