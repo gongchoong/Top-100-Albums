@@ -9,17 +9,17 @@ import SwiftUI
 
 @Observable
 class MainViewModel {
-    private let albumService: AlbumServiceProtocol
+    private let albumDataProvider: AlbumDataProviderProtocol
     var albums: LoadingState<[Album]> = .idle
 
-    init(albumService: AlbumServiceProtocol) {
-        self.albumService = albumService
+    init(albumDataProvider: AlbumDataProviderProtocol) {
+        self.albumDataProvider = albumDataProvider
     }
 
     func fetchAlbums() async {
         albums = .loading
         do {
-            let data = try await albumService.fetch()
+            let data = try await albumDataProvider.fetch()
             let result = try JSONDecoder().decode(TopHundredAlbums.self, from: data).feed.albums
             dump(result)
             albums = .finished(result)
