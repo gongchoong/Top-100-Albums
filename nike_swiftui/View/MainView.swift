@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(MainViewModel.self) private var viewModel
+    @State private var searchText = ""
 
     var body: some View {
         NavigationStack {
@@ -19,8 +20,8 @@ struct MainView: View {
                 case .loading:
                     ProgressView()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                case .finished(let albums):
-                    List(albums) { album in
+                case .finished:
+                    List(viewModel.filteredAlbums(matching: searchText)) { album in
                         NavigationLink(destination: AlbumDetailView(album: album)) {
                             AlbumView(album: album)
                         }
@@ -30,6 +31,7 @@ struct MainView: View {
                 }
             }
             .navigationTitle("Top Albums")
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search albums")
         }
         .task {
             await viewModel.fetchAlbums()
