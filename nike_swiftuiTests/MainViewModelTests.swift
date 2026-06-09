@@ -21,11 +21,9 @@ struct MainViewModelTests {
         }
     }
 
-    @Test("fetchAlbums sets state to finished with decoded albums on success")
+    @Test("fetchAlbums sets state to finished with albums on success")
     func fetchAlbumsSuccess() async throws {
-        let album = makeAlbum(name: "folklore", artistName: "Taylor Swift")
-        let data = try encode(albums: [album])
-        await dataProvider.configure(stub: .init(result: .success(data)))
+        await dataProvider.configure(stub: .init(result: .success([SampleAlbums.folklore])))
 
         await viewModel.fetchAlbums()
 
@@ -34,8 +32,8 @@ struct MainViewModelTests {
             return
         }
         #expect(albums.count == 1)
-        #expect(albums[0].name == "folklore")
-        #expect(albums[0].artistName == "Taylor Swift")
+        #expect(albums[0].name == SampleAlbums.folklore.name)
+        #expect(albums[0].artistName == SampleAlbums.folklore.artistName)
     }
 
     @Test("fetchAlbums sets state to error when data provider throws")
@@ -50,34 +48,44 @@ struct MainViewModelTests {
         }
     }
 
-    @Test("fetchAlbums sets state to error when response is not decodable")
-    func fetchAlbumsDecodingError() async {
-        await dataProvider.configure(stub: .init(result: .success(Data("invalid json".utf8))))
+    @Test("filteredAlbums returns empty when albums are not loaded")
+    func filteredAlbumsNotLoaded() {
+        #expect(viewModel.filteredAlbums(matching: "").isEmpty)
+    }
 
+    @Test("filteredAlbums returns all albums when search text is empty")
+    func filteredAlbumsEmptySearch() async throws {
+        await dataProvider.configure(stub: .init(result: .success([SampleAlbums.folklore, SampleAlbums.midnights])))
         await viewModel.fetchAlbums()
 
-        guard case .error = viewModel.albums else {
-            Issue.record("Expected .error, got \(viewModel.albums)")
-            return
-        }
+        #expect(viewModel.filteredAlbums(matching: "").count == 2)
     }
 
-    // MARK: - Helpers
+    @Test("filteredAlbums filters by album name case-insensitively")
+    func filteredAlbumsByName() async throws {
+        await dataProvider.configure(stub: .init(result: .success([SampleAlbums.folklore, SampleAlbums.midnights])))
+        await viewModel.fetchAlbums()
 
-    private func makeAlbum(name: String, artistName: String) -> Album {
-        Album(
-            artistName: artistName,
-            name: name,
-            artworkUrl100: "https://example.com/art.jpg",
-            artistId: "1",
-            releaseDate: "2024-01-01",
-            genres: [],
-            url: "https://example.com"
-        )
+        let results = viewModel.filteredAlbums(matching: "FOLK")
+        #expect(results.count == 1)
+        #expect(results[0].name == SampleAlbums.folklore.name)
     }
 
-    private func encode(albums: [Album]) throws -> Data {
-        let payload = TopHundredAlbums(feed: Feed(title: "Top 100", albums: albums))
-        return try JSONEncoder().encode(payload)
+    @Test("filteredAlbums filters by artist name case-insensitively")
+    func filteredAlbumsByArtist() async throws {
+        await dataProvider.configure(stub: .init(result: .success([SampleAlbums.folklore, SampleAlbums.certifiedLoverBoy])))
+        await viewModel.fetchAlbums()
+
+        let results = viewModel.filteredAlbums(matching: "drake")
+        #expect(results.count == 1)
+        #expect(results[0].artistName == SampleAlbums.certifiedLoverBoy.artistName)
+    }
+
+    @Test("filteredAlbums returns empty when no albums match search text")
+    func filteredAlbumsNoMatch() async throws {
+        await dataProvider.configure(stub: .init(result: .success([SampleAlbums.folklore])))
+        await viewModel.fetchAlbums()
+
+        #expect(viewModel.filteredAlbums(matching: "zzz").isEmpty)
     }
 }
